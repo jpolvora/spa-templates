@@ -71,5 +71,35 @@
             $('.overlay').fadeOut();
             $('body').removeClass('overlay-open');
         });
+
+        /* ajax related*/
+
+      
+
+        $( document ).ajaxError(function( event, request, settings ) {
+            console.log('ajax error.'); //to be handled
+        });
+
+        $( document ).ajaxSuccess(function( event, request, settings ) {
+            console.log('ajax success');
+        });
+
+        $( document ).ajaxComplete(function( event, request, settings ) {
+            console.log('ajax complete.');
+        });
+
+        $( document ).ajaxSend(function( event, jqxhr, settings ) {
+            console.log('ajax send.');
+            jqxhr.setRequestHeader('my-custom-token', '1234567890');
+        });
+
+        $( document ).ajaxStart(function() {
+            console.log('ajax start.');
+            pubsub.publish('ajax', true);
+        });
+        
+        $( document ).ajaxStop(function() {
+            pubsub.publish('ajax', false);
+        }); 
     });
 });

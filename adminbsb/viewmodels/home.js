@@ -14,6 +14,12 @@
             return dataservice.ping().then(function (data) {
                 var date = utils.jsonDateConverter(data.DateTime);
                 self.message(date);
+            }, function(err){
+                swal({
+                    title: "Erro!",
+                    text: err.statusText,
+                    icon: "error",
+                  });
             });
         }
 

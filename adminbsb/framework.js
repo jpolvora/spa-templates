@@ -69,7 +69,6 @@
         var $shell = config.shell || $('body');
         var channel = config.channel || 'changingview';
 
-
         router.hooks({
             before: function (done, params) {
                 var node = $shell.children().first()[0];
@@ -90,7 +89,7 @@
         return {
             goto: function (viewmodel, args, query) {
                 if (setViewModel.call(self, $shell, viewmodel, args, query, channel)) {
-                    //
+                    console.log('view/viewmodel binded');
                 }
             }
         }
