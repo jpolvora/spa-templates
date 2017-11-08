@@ -1,0 +1,19 @@
+{
+  "name": "spa-templates",
+  "version": "1.0.0",
+  "description": "Repositorio de Templates para spa",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jpolvora/spa-templates.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jpolvora/spa-templates/issues"
+  },
+  "homepage": "https://github.com/jpolvora/spa-templates#readme"
+}
