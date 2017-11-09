@@ -1,8 +1,7 @@
 ﻿define(function (require) {
-    var pubsub = require('lib/pubsub');
+    const pubsub = require('lib/pubsub');
     return {
         ping: function () {
-
             return new Promise(function (resolve, reject) {
                 pubsub.publish('busy', true);
                 $.post('/hello').done(function (data) {
