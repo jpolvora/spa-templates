@@ -11,6 +11,9 @@
         channel: 'busy' //channel pubsub
     });
 
+    var components = {
+        hello: require('./components/hello')
+    }
     var modules = {
         usuario: require('viewmodels/usuario'),
         usuarios: require('viewmodels/usuarios'),
