@@ -6,7 +6,7 @@
     function viewmodel(args) {
         var self = this;
         this.id = ko.observable(args.id || 0);
-      
+
         return {
             getView: function () {
                 return view;
@@ -15,7 +15,11 @@
             id: self.id,
 
             showId: function () {
-                alert(self.id());
+                swal({
+                    title: "Info!",
+                    text: "Id: " + self.id(),
+                    icon: "success",
+                });
             },
             navigate: function () {
                 pubsub.publish('navigate', '/permissao/123');

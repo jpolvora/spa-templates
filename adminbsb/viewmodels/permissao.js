@@ -15,7 +15,11 @@
             id: self.id,
 
             showId: function () {
-                alert(self.id());
+                swal({
+                    title: "Info!",
+                    text: "Id: " + self.id(),
+                    icon: "success",
+                });
             },
 
             activate: function () {

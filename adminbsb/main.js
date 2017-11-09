@@ -1,4 +1,4 @@
-﻿define(function (require) {
+﻿define((require) => {
     var framework = require('./framework');
     var pubsub = require('lib/pubsub');
 
@@ -74,32 +74,32 @@
 
         /* ajax related*/
 
-      
 
-        $( document ).ajaxError(function( event, request, settings ) {
+
+        $(document).ajaxError(function (event, request, settings) {
             console.log('ajax error.'); //to be handled
         });
 
-        $( document ).ajaxSuccess(function( event, request, settings ) {
+        $(document).ajaxSuccess(function (event, request, settings) {
             console.log('ajax success');
         });
 
-        $( document ).ajaxComplete(function( event, request, settings ) {
+        $(document).ajaxComplete(function (event, request, settings) {
             console.log('ajax complete.');
         });
 
-        $( document ).ajaxSend(function( event, jqxhr, settings ) {
+        $(document).ajaxSend(function (event, jqxhr, settings) {
             console.log('ajax send.');
             jqxhr.setRequestHeader('my-custom-token', '1234567890');
         });
 
-        $( document ).ajaxStart(function() {
+        $(document).ajaxStart(function () {
             console.log('ajax start.');
             pubsub.publish('ajax', true);
         });
-        
-        $( document ).ajaxStop(function() {
+
+        $(document).ajaxStop(function () {
             pubsub.publish('ajax', false);
-        }); 
+        });
     });
 });
