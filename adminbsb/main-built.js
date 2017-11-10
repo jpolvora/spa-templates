@@ -529,7 +529,6 @@ define('framework',['require','lib/pubsub'],function (require) {
         var $shell = config.shell || $('body');
         var channel = config.channel || 'changingview';
 
-
         router.hooks({
             before: function (done, params) {
                 var node = $shell.children().first()[0];
@@ -550,7 +549,7 @@ define('framework',['require','lib/pubsub'],function (require) {
         return {
             goto: function (viewmodel, args, query) {
                 if (setViewModel.call(self, $shell, viewmodel, args, query, channel)) {
-                    //
+                    console.log('view/viewmodel binded');
                 }
             }
         }
@@ -978,7 +977,7 @@ define('viewmodels/usuario',['require','text!views/usuario.html','lib/pubsub'],f
     function viewmodel(args) {
         var self = this;
         this.id = ko.observable(args.id || 0);
-      
+
         return {
             getView: function () {
                 return view;
@@ -987,7 +986,11 @@ define('viewmodels/usuario',['require','text!views/usuario.html','lib/pubsub'],f
             id: self.id,
 
             showId: function () {
-                alert(self.id());
+                swal({
+                    title: "Info!",
+                    text: "Id: " + self.id(),
+                    icon: "success",
+                });
             },
             navigate: function () {
                 pubsub.publish('navigate', '/permissao/123');
@@ -1261,7 +1264,11 @@ define('viewmodels/permissao',['require','text!views/permissao.html','lib/utils'
             id: self.id,
 
             showId: function () {
-                alert(self.id());
+                swal({
+                    title: "Info!",
+                    text: "Id: " + self.id(),
+                    icon: "success",
+                });
             },
 
             activate: function () {
@@ -1295,13 +1302,12 @@ define('viewmodels/permissoes',['require','text!views/permissoes.html','lib/util
     return viewmodel;
 });
 
-define('text!views/home.html',[],function () { return '<div>\r\n    <div class="block-header">\r\n        <h2>HOME</h2>\r\n        <p data-bind="text: message">msg...</p>\r\n    </div>\r\n</div>';});
+define('text!views/home.html',[],function () { return '<div>\r\n    <div class="block-header">\r\n        <h2>HOME</h2>\r\n        <p data-bind="text: message">msg...</p>\r\n        <hello v-bind:message="message"></hello>\r\n    </div>\r\n</div>';});
 
 define('dataservice',['require','lib/pubsub'],function (require) {
-    var pubsub = require('lib/pubsub');
+    const pubsub = require('lib/pubsub');
     return {
         ping: function () {
-
             return new Promise(function (resolve, reject) {
                 pubsub.publish('busy', true);
                 $.post('/hello').done(function (data) {
@@ -1329,9 +1335,17 @@ define('viewmodels/home',['require','text!views/home.html','lib/pubsub','dataser
         this.message = ko.observable('');
         function activate() {
             console.log('activate: ' + count);
+           
             return dataservice.ping().then(function (data) {
                 var date = utils.jsonDateConverter(data.DateTime);
                 self.message(date);
+
+            }, function (err) {
+                swal({
+                    title: "Erro!",
+                    text: err.statusText,
+                    icon: "error",
+                });
             });
         }
 
@@ -1346,7 +1360,7 @@ define('viewmodels/home',['require','text!views/home.html','lib/pubsub','dataser
 
     return viewmodel;
 });
-define('main',['require','./framework','lib/pubsub','viewmodels/usuario','viewmodels/usuarios','viewmodels/permissao','viewmodels/permissoes','viewmodels/home'],function (require) {
+define('main',['require','./framework','lib/pubsub','viewmodels/usuario','viewmodels/usuarios','viewmodels/permissao','viewmodels/permissoes','viewmodels/home'],(require) => {
     var framework = require('./framework');
     var pubsub = require('lib/pubsub');
 
@@ -1358,7 +1372,7 @@ define('main',['require','./framework','lib/pubsub','viewmodels/usuario','viewmo
         router: router,
         channel: 'busy' //channel pubsub
     });
-
+    
     var modules = {
         usuario: require('viewmodels/usuario'),
         usuarios: require('viewmodels/usuarios'),
@@ -1418,6 +1432,36 @@ define('main',['require','./framework','lib/pubsub','viewmodels/usuario','viewmo
         pubsub.subscribe('navigated', function (_, url) {
             $('.overlay').fadeOut();
             $('body').removeClass('overlay-open');
+        });
+
+        /* ajax related*/
+
+
+
+        $(document).ajaxError(function (event, request, settings) {
+            console.log('ajax error.'); //to be handled
+        });
+
+        $(document).ajaxSuccess(function (event, request, settings) {
+            console.log('ajax success');
+        });
+
+        $(document).ajaxComplete(function (event, request, settings) {
+            console.log('ajax complete.');
+        });
+
+        $(document).ajaxSend(function (event, jqxhr, settings) {
+            console.log('ajax send.');
+            jqxhr.setRequestHeader('my-custom-token', '1234567890');
+        });
+
+        $(document).ajaxStart(function () {
+            console.log('ajax start.');
+            pubsub.publish('ajax', true);
+        });
+
+        $(document).ajaxStop(function () {
+            pubsub.publish('ajax', false);
         });
     });
 });

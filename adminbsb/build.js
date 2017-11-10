@@ -2,7 +2,7 @@
     baseUrl: ".",
 
     paths: {
-        text: "./lib/text",
+        text: "../node_modules/text/text",
         viewmodels: './viewmodels',
         views: './views',
         lib: './lib'
