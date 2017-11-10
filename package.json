@@ -18,6 +18,7 @@
   "homepage": "https://github.com/jpolvora/spa-templates#readme",
   "dependencies": {
     "requirejs": "^2.3.5",
-    "vue": "^2.5.3"
+    "vue": "^2.5.3",
+    "vue-router": "^3.0.1"
   }
 }
