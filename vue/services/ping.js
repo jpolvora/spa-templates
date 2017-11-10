@@ -9,7 +9,7 @@ define((require) => {
             return new Promise((resolve) => {
                 setTimeout(function () {
                     pubsub.$emit('busy', false);
-                    resolve("success!");
+                    resolve(`${url} success!`);
                 }, 1000);
             });
         }

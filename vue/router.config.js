@@ -19,6 +19,9 @@ define((require) => {
 
     router.afterEach((to, from) => {
         console.dir({ to, from });
+
+        $('.overlay').fadeOut();
+        $('body').removeClass('overlay-open');
     })
 
     return router;

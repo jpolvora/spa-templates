@@ -9,10 +9,22 @@ define((require) => {
         //set a global loader
         console.log("App is Busy: {0}", value);
     });
-    
+
     var app = new Vue({
         el: '#shell',
         router: router,
         template: shell
+    });
+
+    $(function () {
+        $("ul.list a").click(function () {
+            $("ul.list li").each(function () {
+                var $this = $(this);
+                $this.removeClass("active");
+            });
+
+            var $this = $(this);
+            $this.parent().addClass("active");
+        });
     });
 });
