@@ -2,6 +2,8 @@ define((require) => {
     const Vue = require('vue');
     const template = require('text!./home.html');
 
+    var service = require("../services/ping");
+
     var component = Vue.component('home', {
         template: template,
         data: function () {
@@ -12,9 +14,10 @@ define((require) => {
         created: function () {
             console.info('home component created');
             var self = this;
-            setTimeout(function () {
-                self.message = 'loaded!!!';
-            }, 2000);
+
+            service.ping("...").then(function (data) {
+                self.message = data;
+            });
         }
     });
 

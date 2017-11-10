@@ -3,14 +3,14 @@ define((require) => {
     const VueRouter = require("vue-router");
     Vue.use(VueRouter);
 
-    var views = {
+    var viewModels = {
         Home: require('./components/home'),
         Page2: require('./components/page2')
     }
 
     const routes = [
-        { path: '/', component: views.Home },
-        { path: '/page2', component: views.Page2 }
+        { path: '/', component: viewModels.Home },
+        { path: '/page2', component: viewModels.Page2 }
     ]
 
     const router = new VueRouter({
