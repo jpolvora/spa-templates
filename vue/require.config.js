@@ -5,5 +5,5 @@ require.config({
         'vue-router': '../node_modules/vue-router/dist/vue-router',
         text: "../node_modules/text/text",
     },
-    deps: ["main"]
+    deps: ["shell"]
 });

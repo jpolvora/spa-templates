@@ -2,9 +2,10 @@ define((require) => {
     const Vue = require('vue');
     const template = require('text!./home.html');
 
-    var service = require("../services/ping");
+    const pubsub = require('../utils/pubsub');
+    const service = require("../services/ping");
 
-    var component = Vue.component('home', {
+    const component = Vue.component('home', {
         template: template,
         data: function () {
             return {
@@ -18,6 +19,11 @@ define((require) => {
             service.ping("...").then(function (data) {
                 self.message = data;
             });
+        },
+        methods: {
+            gopage2: function () {
+                pubsub.$emit('navigate', { name: 'page2' });
+            }
         }
     });
 

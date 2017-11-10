@@ -1,6 +1,7 @@
 ﻿({
-    baseUrl: ".",
-
+    baseDir: "./",
+    appDir: "./",
+    dir: "./",
     paths: {
         paths: {
             vue: '../node_modules/vue/dist/vue',
@@ -9,8 +10,8 @@
         },
     },
     name: './vendor/almond',
-    include: ['main'],
-    insertRequire: ['main'],
+    include: ['shell'],
+    insertRequire: ['shell'],
     out: 'main-built.js',
     wrap: true,
 })

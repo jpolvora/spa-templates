@@ -8,21 +8,12 @@ define((require) => {
         Page2: require('./components/page2')
     }
 
-    const routes = [
-        { path: '/', component: components.Home },
-        { path: '/page2', component: components.Page2 }
-    ]
-
-    const router = new VueRouter({
-        routes // short for `routes: routes`
+    const sharedRouter = new VueRouter({
+        routes: [
+            { path: '/', name: 'home', component: components.Home },
+            { path: '/page2', name: 'page2', component: components.Page2 }
+        ]
     })
 
-    router.afterEach((to, from) => {
-        console.dir({ to, from });
-
-        $('.overlay').fadeOut();
-        $('body').removeClass('overlay-open');
-    })
-
-    return router;
+    return sharedRouter;
 });

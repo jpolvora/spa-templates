@@ -33,7 +33,7 @@ $.AdminBSB.options = {
         scrollAlwaysVisible: false,
         scrollBorderRadius: '0',
         scrollRailBorderRadius: '0',
-        scrollActiveItemWhenPageLoad: true,
+        scrollActiveItemWhenPageLoad: false,
         breakpointWidth: 1170
     },
     dropdownMenu: {
@@ -444,15 +444,3 @@ $.AdminBSB.browser = {
 }
 //==========================================================================================================================
 
-$(function () {
-    $.AdminBSB.browser.activate();
-    $.AdminBSB.leftSideBar.activate();
-    $.AdminBSB.rightSideBar.activate();
-    $.AdminBSB.navbar.activate();
-    $.AdminBSB.dropdownMenu.activate();
-    $.AdminBSB.input.activate();
-    $.AdminBSB.select.activate();
-    $.AdminBSB.search.activate();
-
-    setTimeout(function () { $('.page-loader-wrapper').fadeOut(); }, 50);
-});
