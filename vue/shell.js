@@ -18,7 +18,7 @@ define((require) => {
     });
 
     sharedRouter.afterEach((to, from) => {
-        console.dir({ to, from });
+        //console.dir({ to, from });
 
         $('.overlay').fadeOut();
         $('body').removeClass('overlay-open');
