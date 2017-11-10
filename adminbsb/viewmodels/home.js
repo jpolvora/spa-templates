@@ -1,5 +1,4 @@
 ﻿define(function (require) {
-    var Vue = require('vue');
     var view = require('text!views/home.html');
     var pubsub = require('lib/pubsub');
     var dataservice = require('dataservice');
@@ -12,13 +11,7 @@
         this.message = ko.observable('');
         function activate() {
             console.log('activate: ' + count);
-            var app = new Vue({
-                el: '#shell',
-                data: {
-                    message: "oi"
-                }
-            });
-
+           
             return dataservice.ping().then(function (data) {
                 var date = utils.jsonDateConverter(data.DateTime);
                 self.message(date);
