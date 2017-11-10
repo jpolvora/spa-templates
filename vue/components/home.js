@@ -1,13 +1,9 @@
 define((require) => {
     const Vue = require('vue');
+    const template = require('text!./home.html');
 
     var component = Vue.component('home', {
-        template: `
-        <div>
-            <p>Message: {{ message }}</p>
-            <router-link to="page2">Page2</router-link>
-        </div>
-        `,
+        template: template,
         data: function () {
             return {
                 message: 'loading...'
