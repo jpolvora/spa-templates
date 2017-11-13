@@ -1,5 +1,6 @@
 ﻿({
     baseUrl: ".",
+    optimize: 'none',
 
     paths: {
         text: "../node_modules/text/text",
