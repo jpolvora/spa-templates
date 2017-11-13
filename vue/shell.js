@@ -5,6 +5,9 @@ define((require) => {
     const sharedRouter = require('./router.config');
     const pubsub = require('utils/pubsub');
 
+
+    var user = require('./services/user');
+
     pubsub.$on('busy', (value) => {
         //set a global loader
         console.log('message:busy:', value);
@@ -25,7 +28,7 @@ define((require) => {
     })
 
 
-    const app = new Vue({
+    new Vue({
         el: '#shell',
         router: sharedRouter,
         template: shell,
@@ -37,15 +40,29 @@ define((require) => {
         }
     });
 
-    const left = new Vue({
+    new Vue({
         el: '#menu',
         template: menu,
         router: sharedRouter,
+        data: function () {
+            return {
+                email: '...',
+                name: '...'
+            }
+        },
         mounted: function () {
-
+            var self = this;
             this.$nextTick(function () {
                 // Código que irá rodar apenas após toda
                 // a árvore do componente ter sido renderizada
+
+                var info = user.getUserInfo().then(function (data) {
+                    self.email = data.email;
+                    self.name = data.name;
+                }).catch((err) => {
+                    self.email = "Error...";
+                    self.name = "error...";
+                });
 
                 $(function () {
                     $.AdminBSB.browser.activate();

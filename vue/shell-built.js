@@ -2612,7 +2612,7 @@ define('shell',['require','vue','text!./shell.html','text!./menu.html','./router
     })
 
 
-    const app = new Vue({
+    new Vue({
         el: '#shell',
         router: sharedRouter,
         template: shell,
@@ -2624,7 +2624,7 @@ define('shell',['require','vue','text!./shell.html','text!./menu.html','./router
         }
     });
 
-    const left = new Vue({
+    new Vue({
         el: '#menu',
         template: menu,
         router: sharedRouter,
