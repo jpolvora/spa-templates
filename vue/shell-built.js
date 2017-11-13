@@ -2550,21 +2550,36 @@ define('components/page2',['require','vue','axios'],(require) => {
 
     return component;
 });
-define('router.config',['require','vue','vue-router','./components/home','./components/page2'],(require) => {
+
+define('text!components/notfound.html',[],function () { return '<div>\r\n    <h2>Page not Found or not implemented.</h2>\r\n    <router-link to="/">Go to home.</router-link>\r\n</div>';});
+
+define('components/notfound',['require','vue','text!./notfound.html'],(require) => {
+    const Vue = require('vue');
+    const template = require('text!./notfound.html');
+
+    var component = Vue.component('notfound', {
+        template: template
+    });
+
+    return component;
+});
+define('router.config',['require','vue','vue-router','./components/home','./components/page2','./components/notfound'],(require) => {
     const Vue = require("vue");
     const VueRouter = require("vue-router");
     Vue.use(VueRouter);
 
     var components = {
         Home: require('./components/home'),
-        Page2: require('./components/page2')
+        Page2: require('./components/page2'),
+        NotFound: require('./components/notfound')
     }
 
     const sharedRouter = new VueRouter({
         //mode: 'history',
         routes: [
             { path: '/', name: 'home', component: components.Home },
-            { path: '/page2', name: 'page2', component: components.Page2 }
+            { path: '/page2', name: 'page2', component: components.Page2 },
+            { path: '*', name: 'notfound', component: components.NotFound }
         ]
     })
 
