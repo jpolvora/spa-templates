@@ -1,5 +1,6 @@
 # spa-templates
-Repositorio de Templates para spa
+Repositorio de Templates para SPA
+Spa = Single Page Applications
 
 ##AdminBSB Material Design Template
 - /adminbsb:
@@ -12,3 +13,8 @@ Repositorio de Templates para spa
     - RequireJs (Loader, AMD Modules, Bundling & Uglifier)
 
     - gulp tasks: clean, build, minify, bundle-css, bundle-js
+
+- /MVC
+    - Sketch of an MVC client side framework.
+    - Not ready. (far away...)
+    - Maybe never ready.
