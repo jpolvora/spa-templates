@@ -1,25 +1,8 @@
 var gulp = require('gulp'),
     rjs = require('requirejs'),
     compressor = require('node-minify'),
-    del = require('del');
-
-var rjsConfig = {
-    baseUrl: ".",
-    optimize: 'none',
-    appUrl: ".",
-    paths: {
-        'services': './services',
-        vue: '../node_modules/vue/dist/vue.min',
-        'vue-router': '../node_modules/vue-router/dist/vue-router.min',
-        text: "../node_modules/text/text",
-        axios: "../node_modules/axios/dist/axios"
-    },
-    name: './vendor/almond',
-    include: ['app'],
-    insertRequire: ['app'],
-    out: 'app-built.js',
-    wrap: true,
-}
+    del = require('del'),
+    runSequence = require('run-sequence');
 
 gulp.task('clean', () => {
     console.log('clean -> before commit');
@@ -29,14 +12,29 @@ gulp.task('clean', () => {
     del.sync('vendor.css');
 });
 
-gulp.task('build', () => {
+gulp.task('build', (cb) => {
     console.log('build -> prepare for production');
-
-    rjs.optimize(rjsConfig);
+    rjs.optimize({
+        baseUrl: ".",
+        optimize: 'none',
+        appUrl: ".",
+        paths: {
+            'services': './services',
+            vue: '../node_modules/vue/dist/vue.min',
+            'vue-router': '../node_modules/vue-router/dist/vue-router.min',
+            text: "../node_modules/text/text",
+            axios: "../node_modules/axios/dist/axios"
+        },
+        name: './vendor/almond',
+        include: ['app'],
+        insertRequire: ['app'],
+        out: 'app-built.js',
+        wrap: true
+    }, () => cb());
 });
 
 gulp.task('minify', function () {
-    compressor.minify({
+    return compressor.minify({
         compressor: 'gcc',
         input: './app-built.js',
         output: './app.min.js',
@@ -51,7 +49,7 @@ gulp.task('minify', function () {
 });
 
 gulp.task('bundle-css', function () {
-    compressor.minify({
+    return compressor.minify({
         compressor: 'no-compress',
         input: [
             'plugins/bootstrap/css/bootstrap.min.css',
@@ -73,7 +71,7 @@ gulp.task('bundle-css', function () {
 });
 
 gulp.task('bundle-js', function () {
-    compressor.minify({
+    return compressor.minify({
         compressor: 'no-compress',
         input: [
             'plugins/jquery/jquery.min.js',
@@ -94,4 +92,10 @@ gulp.task('bundle-js', function () {
     });
 });
 
-gulp.task('default', ['clean', 'build', 'minify', 'bundle-css', 'bundle-js']);
+gulp.task('default', () => {
+    runSequence(
+        'clean',
+        'build',
+        ['minify', 'bundle-css', 'bundle-js'] //run in parallel
+    );
+});
