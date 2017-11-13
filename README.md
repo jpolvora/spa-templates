@@ -18,3 +18,11 @@
     - Sketch of an MVC client side framework.
     - Not ready. (far away...)
     - Maybe never ready.
+
+#Instalação
+```js
+    npm install jpolvora/spa-templates
+    npm install
+    npm start
+```
+
