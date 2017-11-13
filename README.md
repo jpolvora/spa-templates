@@ -1,6 +1,6 @@
 # spa-templates
-Repositorio de Templates para SPA
-Spa = Single Page Applications
+##Repositorio de Templates para SPA.
+###Spa = Single Page Applications
 
 ##AdminBSB Material Design Template
 - /adminbsb:
