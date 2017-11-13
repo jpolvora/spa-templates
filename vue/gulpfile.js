@@ -41,6 +41,7 @@ gulp.task('minify', function () {
         callback: function (err, min) {
             if (!err) {
                 console.log("finish...");
+                del.sync('app-built.js');
             } else {
                 console.log(err);
             }
@@ -90,6 +91,10 @@ gulp.task('bundle-js', function () {
             }
         }
     });
+});
+
+gulp.task('publish', function () {
+    console.log('in development');
 });
 
 gulp.task('default', () => {
