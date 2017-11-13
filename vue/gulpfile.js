@@ -1,10 +1,27 @@
 var gulp = require('gulp');
+var compressor = require('node-minify');
 
-gulp.task('build', function () {
-    console.log('the build task.');
+gulp.task('clean', () => {
+    console.log('clean -> before commit');
 });
 
-gulp.task('default', function () {
-    // place code for your default task here
-    console.log('choose a task.');
+gulp.task('build', () => {
+    console.log('build -> prepare for production');
 });
+
+gulp.task('minify', function () {
+    compressor.minify({
+        compressor: 'gcc',
+        input: './app-built.js',
+        output: './app.min.js',
+        callback: function (err, min) {
+            if (!err) {
+                console.log("finish...");
+            } else {
+                console.log(err);
+            }
+        }
+    });
+});
+
+gulp.task('default', ['clean', 'build', 'minify']);
