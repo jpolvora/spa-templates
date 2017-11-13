@@ -8,7 +8,7 @@ define((require) => {
         data: function () {
             return {
                 message: "..."
-            };
+            }
         },
         created: function () {
             console.info('page2 component created');

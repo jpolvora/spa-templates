@@ -1,16 +1,16 @@
 define((require) => {
-    const shell = require("text!./shell.html");
     const Vue = require('vue');
     return {
-        create: function (el, sharedRouter) {
+        create: function (el, router) {
             return new Vue({
-                el: el || '#shell',
-                router: sharedRouter,
-                template: shell,
+                el, //el : el,
+                router, //router: router
+                template: '<router-view></router-view>',
                 mounted: function () {
                     this.$nextTick(function () {
                         // Código que irá rodar apenas após toda
                         // a árvore do componente ter sido renderizada
+                        console.log('shell mounted.');
                     })
                 }
             });

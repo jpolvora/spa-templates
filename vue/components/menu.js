@@ -4,11 +4,11 @@ define((require) => {
     const user = require('services/user');
 
     return {
-        create: function (el, sharedRouter) {
+        create: function (el, router) {
             return new Vue({
-                el: el || '#menu',
+                el,
+                router,
                 template: menu,
-                router: sharedRouter,
                 data: function () {
                     return {
                         email: '...',
@@ -20,6 +20,7 @@ define((require) => {
                     this.$nextTick(function () {
                         // Código que irá rodar apenas após toda
                         // a árvore do componente ter sido renderizada
+                        console.log('menu mounted.');
 
                         var info = user.getUserInfo().then(function (data) {
                             self.email = data.email;
