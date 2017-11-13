@@ -10,3 +10,5 @@ Repositorio de Templates para spa
     - Vue-Router
     - Vue.js
     - RequireJs (Loader, AMD Modules, Bundling & Uglifier)
+
+    - gulp tasks: clean, build, minify, bundle-css, bundle-js
