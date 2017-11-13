@@ -2,5 +2,6 @@ define((require) => {
     var Vue = require('vue');
 
     //singleton instance to be a global EventBus / pubsub
-    return new Vue();
+    const vue = new Vue();
+    return vue; //export vue instance
 });

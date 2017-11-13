@@ -1,12 +1,38 @@
-var gulp = require('gulp');
-var compressor = require('node-minify');
+var gulp = require('gulp'),
+    rjs = require('requirejs'),
+    compressor = require('node-minify'),
+    del = require('del');
+
+var rjsConfig = {
+    baseUrl: ".",
+    optimize: 'none',
+    appUrl: ".",
+    paths: {
+        'services': './services',
+        vue: '../node_modules/vue/dist/vue.min',
+        'vue-router': '../node_modules/vue-router/dist/vue-router.min',
+        text: "../node_modules/text/text",
+        axios: "../node_modules/axios/dist/axios"
+    },
+    name: './vendor/almond',
+    include: ['app'],
+    insertRequire: ['app'],
+    out: 'app-built.js',
+    wrap: true,
+}
 
 gulp.task('clean', () => {
     console.log('clean -> before commit');
+    del.sync('app.min.js');
+    del.sync('app-built.js');
+    del.sync('vendor.js');
+    del.sync('vendor.css');
 });
 
 gulp.task('build', () => {
     console.log('build -> prepare for production');
+
+    rjs.optimize(rjsConfig);
 });
 
 gulp.task('minify', function () {
