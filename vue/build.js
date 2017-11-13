@@ -1,7 +1,7 @@
 ﻿({
     baseUrl: ".",
     optimize: 'none',
-
+    appUrl: ".",
     paths: {
         'services': './services',
         vue: '../node_modules/vue/dist/vue.min',

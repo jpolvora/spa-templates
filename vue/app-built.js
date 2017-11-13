@@ -2526,7 +2526,7 @@ define('components/page2',['require','vue','axios'],(require) => {
         data: function () {
             return {
                 message: "..."
-            };
+            }
         },
         created: function () {
             console.info('page2 component created');
@@ -2580,28 +2580,6 @@ define('router.config',['require','vue','vue-router','./components/home','./comp
     return sharedRouter;
 });
 
-define('text!components/shell.html',[],function () { return '<router-view>\r\n</router-view>';});
-
-define('components/shell',['require','text!./shell.html','vue'],(require) => {
-    const shell = require("text!./shell.html");
-    const Vue = require('vue');
-    return {
-        create: function (el, sharedRouter) {
-            return new Vue({
-                el: el || '#shell',
-                router: sharedRouter,
-                template: shell,
-                mounted: function () {
-                    this.$nextTick(function () {
-                        // Código que irá rodar apenas após toda
-                        // a árvore do componente ter sido renderizada
-                    })
-                }
-            });
-        }
-    }
-});
-
 define('text!components/menu.html',[],function () { return '<aside id="leftsidebar" class="sidebar">\r\n    <!-- User Info -->\r\n    <div class="user-info">\r\n        <div class="image">\r\n            <img src="images/user.png" width="48" height="48" alt="User" />\r\n        </div>\r\n        <div class="info-container">\r\n            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ name }}</div>\r\n            <div class="email">{{ email }}</div>\r\n            <div class="btn-group user-helper-dropdown">\r\n                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>\r\n                <ul class="dropdown-menu pull-right">\r\n                    <li>\r\n                        <a href="javascript:void(0);">\r\n                            <i class="material-icons">person</i>Profile</a>\r\n                    </li>\r\n                    <li role="seperator" class="divider"></li>\r\n                    <li>\r\n                        <a href="javascript:void(0);">\r\n                            <i class="material-icons">group</i>Followers</a>\r\n                    </li>\r\n                    <li>\r\n                        <a href="javascript:void(0);">\r\n                            <i class="material-icons">shopping_cart</i>Sales</a>\r\n                    </li>\r\n                    <li>\r\n                        <a href="javascript:void(0);">\r\n                            <i class="material-icons">favorite</i>Likes</a>\r\n                    </li>\r\n                    <li role="seperator" class="divider"></li>\r\n                    <li>\r\n                        <a href="javascript:void(0);">\r\n                            <i class="material-icons">input</i>Sign Out</a>\r\n                    </li>\r\n                </ul>\r\n            </div>\r\n        </div>\r\n    </div>\r\n    <!-- #User Info -->\r\n    <!-- Menu -->\r\n    <div class="menu">\r\n        <ul class="list">\r\n            <li class="header">ADMINISTRAÇÃO</li>\r\n            <li>\r\n                <router-link to="/">\r\n                    <i class="material-icons">home</i>\r\n                    <span>Dashboard</span>\r\n                </router-link>\r\n            </li>\r\n            <li>\r\n                <router-link to="/page2">\r\n                    <i class="material-icons">view_list</i>\r\n                    <span>Page2</span>\r\n                </router-link>\r\n            </li>\r\n            <li>\r\n                <a data-navigo href="/permissoes">\r\n                    <i class="material-icons">layers</i>\r\n                    <span>Permissões</span>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href="javascript:void(0);" class="menu-toggle">\r\n                    <i class="material-icons">widgets</i>\r\n                    <span>Widgets</span>\r\n                </a>\r\n                <ul class="ml-menu">\r\n                    <li>\r\n                        <a href="javascript:void(0);" class="menu-toggle">\r\n                            <span>Cards</span>\r\n                        </a>\r\n                        <ul class="ml-menu">\r\n                            <li>\r\n                                <a href="pages/widgets/cards/basic.html">Basic</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/cards/colored.html">Colored</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/cards/no-header.html">No Header</a>\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                    <li>\r\n                        <a href="javascript:void(0);" class="menu-toggle">\r\n                            <span>Infobox</span>\r\n                        </a>\r\n                        <ul class="ml-menu">\r\n                            <li>\r\n                                <a href="pages/widgets/infobox/infobox-1.html">Infobox-1</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/infobox/infobox-2.html">Infobox-2</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/infobox/infobox-3.html">Infobox-3</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/infobox/infobox-4.html">Infobox-4</a>\r\n                            </li>\r\n                            <li>\r\n                                <a href="pages/widgets/infobox/infobox-5.html">Infobox-5</a>\r\n                            </li>\r\n                        </ul>\r\n                    </li>\r\n                </ul>\r\n            </li>\r\n            <li class="header">LABELS</li>\r\n            <li>\r\n                <a href="javascript:void(0);">\r\n                    <i class="material-icons col-red">donut_large</i>\r\n                    <span>Important</span>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href="javascript:void(0);">\r\n                    <i class="material-icons col-amber">donut_large</i>\r\n                    <span>Warning</span>\r\n                </a>\r\n            </li>\r\n            <li>\r\n                <a href="javascript:void(0);">\r\n                    <i class="material-icons col-light-blue">donut_large</i>\r\n                    <span>Information</span>\r\n                </a>\r\n            </li>\r\n        </ul>\r\n    </div>\r\n    <!-- #Menu -->\r\n    <!-- Footer -->\r\n    <div class="legal">\r\n        <div class="copyright">\r\n            &copy; 2016 - 2017\r\n            <a href="javascript:void(0);">AdminBSB - Material Design</a>.\r\n        </div>\r\n        <div class="version">\r\n            <b>Version: </b> 1.0.5\r\n        </div>\r\n    </div>\r\n    <!-- #Footer -->\r\n</aside>';});
 
 define('services/user',['require','axios'],(require) => {
@@ -2625,11 +2603,11 @@ define('components/menu',['require','vue','text!./menu.html','services/user'],(r
     const user = require('services/user');
 
     return {
-        create: function (el, sharedRouter) {
+        create: function (el, router) {
             return new Vue({
-                el: el || '#menu',
+                el,
+                router,
                 template: menu,
-                router: sharedRouter,
                 data: function () {
                     return {
                         email: '...',
@@ -2641,6 +2619,7 @@ define('components/menu',['require','vue','text!./menu.html','services/user'],(r
                     this.$nextTick(function () {
                         // Código que irá rodar apenas após toda
                         // a árvore do componente ter sido renderizada
+                        console.log('menu mounted.');
 
                         var info = user.getUserInfo().then(function (data) {
                             self.email = data.email;
@@ -2668,15 +2647,30 @@ define('components/menu',['require','vue','text!./menu.html','services/user'],(r
         }
     }
 });
-define('app',['require','vue','./router.config','utils/pubsub','./components/shell','./components/menu'],(require) => {
-    const Vue = require("vue");
-
+define('components/shell',['require','vue'],(require) => {
+    const Vue = require('vue');
+    return {
+        create: function (el, router) {
+            return new Vue({
+                el, //el : el,
+                router, //router: router
+                template: '<router-view></router-view>',
+                mounted: function () {
+                    this.$nextTick(function () {
+                        // Código que irá rodar apenas após toda
+                        // a árvore do componente ter sido renderizada
+                        console.log('shell mounted.');
+                    })
+                }
+            });
+        }
+    }
+});
+define('app',['require','./router.config','utils/pubsub','./components/menu','./components/shell'],(require) => {
+    //boot up all components
 
     const sharedRouter = require('./router.config');
     const pubsub = require('utils/pubsub');
-
-
-
 
     pubsub.$on('busy', (value) => {
         //set a global loader
@@ -2691,18 +2685,9 @@ define('app',['require','vue','./router.config','utils/pubsub','./components/she
     });
 
     sharedRouter.afterEach((to, from) => {
-        //console.dir({ to, from });
-
         $('.overlay').fadeOut();
         $('body').removeClass('overlay-open');
     })
-
-
-    var shell = require('./components/shell');
-    shell.create('#shell', sharedRouter);
-
-    var menu = require('./components/menu');
-    menu.create('#menu', sharedRouter);
 
     function setBusy(bool) {
         if (bool) {
@@ -2711,6 +2696,9 @@ define('app',['require','vue','./router.config','utils/pubsub','./components/she
             $('.page-loader-wrapper').fadeOut();
         }
     }
+
+    require('./components/menu').create('#menu', sharedRouter);
+    require('./components/shell').create('#shell', sharedRouter);
 });
 
 require(["app"]);
