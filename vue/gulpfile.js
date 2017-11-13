@@ -35,7 +35,7 @@ gulp.task('build', (cb) => {
 
 gulp.task('minify', function () {
     return compressor.minify({
-        compressor: 'gcc',
+        compressor: 'babel-minify',
         input: './app-built.js',
         output: './app.min.js',
         callback: function (err, min) {
