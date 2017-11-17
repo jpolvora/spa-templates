@@ -1,11 +1,13 @@
+const $root = ''; //relative to the webserver path
 require.config({
-    baseUrl: '.',
+    //baseUrl: './',
+
     paths: {
-        'services': './services',
-        vue: '/node_modules/vue/dist/vue.min',
-        'vue-router': '/node_modules/vue-router/dist/vue-router.min',
-        text: "/node_modules/text/text",
-        axios: "/node_modules/axios/dist/axios"
+        'services': $root + 'services',
+        vue: $root + '/node_modules/vue/dist/vue.min',
+        'vue-router': $root + '/node_modules/vue-router/dist/vue-router.min',
+        text: $root + "/node_modules/text/text",
+        axios: $root + "/node_modules/axios/dist/axios"
     },
     deps: ["app"]
 });
