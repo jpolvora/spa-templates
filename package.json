@@ -19,7 +19,7 @@
   "homepage": "https://github.com/jpolvora/spa-templates#readme",
   "dependencies": {
     "axios": "^0.17.0",
-    "http-server": "^0.10.0",
+    "http-server": "^14.1.1",
     "requirejs": "^2.3.5",
     "vue": "^2.5.3",
     "vue-router": "^3.0.1"
